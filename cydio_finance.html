@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10151d">
+<title>CYDIO FINANCE</title>
+<style>
+:root{--bg:#0d1219;--panel:#151d27;--panel2:#1b2633;--line:#293545;--text:#eef3f8;--muted:#9aa9b8;--green:#32c878;--yellow:#f2c14e;--red:#f06464;--blue:#7ba8ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.app{max-width:1200px;margin:auto;padding:22px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}
+.brand{font-size:21px;font-weight:850;letter-spacing:1.5px}.brand span{color:var(--green)}.sub{color:var(--muted);font-size:11px;letter-spacing:1.4px}
+.pill{border:1px solid var(--line);border-radius:99px;padding:7px 12px;color:var(--muted);font-size:12px}
+.layout{display:grid;grid-template-columns:210px 1fr;gap:18px}
+nav,.panel,.stat{background:var(--panel);border:1px solid var(--line);border-radius:16px}
+nav{padding:12px;height:max-content;position:sticky;top:12px}
+nav button{display:flex;width:100%;gap:10px;align-items:center;text-align:left;border:0;background:transparent;color:var(--muted);padding:12px;border-radius:10px;margin:2px 0}
+nav button.active,nav button:hover{background:var(--panel2);color:var(--text)}
+main{min-width:0}.page{display:none}.page.active{display:block}
+h1{font-size:24px;margin:0 0 5px}h2{font-size:16px;margin:0 0 14px}.muted{color:var(--muted)}.small{font-size:12px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.stat{padding:16px}.stat .label{font-size:12px;color:var(--muted)}.stat .value{font-size:23px;font-weight:750;margin-top:6px}
+.green{color:var(--green)}.yellow{color:var(--yellow)}.red{color:var(--red)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel{padding:18px;margin-bottom:14px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;background:#0e151e;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:11px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}textarea{resize:vertical;min-height:75px}
+.btn{background:var(--green);color:#07130c;border:0;border-radius:9px;padding:11px 15px;font-weight:750}.btn.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.btn.danger{background:#4b2428;color:#ffdede}.btn.smallbtn{padding:7px 10px;font-size:12px}
+form .btn{width:100%}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}
+.tag{display:inline-block;border-radius:99px;padding:4px 8px;font-size:11px;font-weight:700}.tag.green{background:#153b2a}.tag.yellow{background:#403719}.tag.red{background:#482529}
+.progress{height:9px;background:#273240;border-radius:99px;overflow:hidden;margin:9px 0}.progress>i{display:block;height:100%;background:var(--green);border-radius:99px}
+.empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+.barlist{display:flex;flex-direction:column;gap:12px}.barrow{display:grid;grid-template-columns:110px 1fr 85px;gap:10px;align-items:center;font-size:12px}.bar{height:9px;background:#273240;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--blue)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.notice{padding:11px;border-radius:10px;background:#1d2b27;border:1px solid #28543f;color:#b7f1d0;font-size:12px;margin-bottom:12px}
+footer{color:var(--muted);font-size:11px;text-align:center;padding:22px}
+@media(max-width:800px){.app{padding:14px}.layout{grid-template-columns:1fr}nav{position:static;display:flex;overflow:auto;gap:4px}nav button{white-space:nowrap;width:auto;padding:9px 11px}.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
+@media(max-width:420px){.stats{gap:8px}.stat{padding:12px}.stat .value{font-size:19px}.panel{padding:14px}table{font-size:12px}th,td{padding:8px 5px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div><div class="brand">CYDIO <span>FINANCE</span></div><div class="sub">CONTROLO • DECISÃO • FUTURO</div></div><div class="pill">● Gestão pessoal</div></header>
+<div class="layout">
+<nav id="nav">
+<button class="active" data-page="dashboard">▦ Dashboard</button>
+<button data-page="income">＋ Receitas</button>
+<button data-page="expense">− Despesas</button>
+<button data-page="commitments">▣ Compromissos</button>
+<button data-page="goals">◎ Poupança</button>
+<button data-page="lifeplan">⌂ Plano de vida</button>
+<button data-page="history">▤ Histórico</button>
+<button data-page="reports">▥ Relatórios</button>
+<button data-page="settings">⚙ Definições</button>
+</nav>
+<main>
+<section class="page active" id="dashboard">
+<div class="row"><div><h1>Visão geral</h1><div class="muted">A tua situação financeira, num só lugar.</div></div><div class="pill" id="monthLabel"></div></div>
+<div class="stats">
+<div class="stat"><div class="label">Saldo disponível</div><div class="value" id="balance">0,00 €</div></div>
+<div class="stat"><div class="label">Receitas registadas</div><div class="value green" id="incomeTotal">0,00 €</div></div>
+<div class="stat"><div class="label">Despesas registadas</div><div class="value red" id="expenseTotal">0,00 €</div></div>
+<div class="stat"><div class="label">Poupança acumulada</div><div class="value" id="savedTotal">0,00 €</div></div>
+</div>
+<div class="grid2">
+<div class="panel"><h2>Estado financeiro</h2><div id="health"></div><div class="small" id="healthText"></div></div>
+<div class="panel"><h2>Objetivos de poupança</h2><div id="goalSummary"></div></div>
+</div>
+<div class="grid2">
+<div class="panel"><div class="row"><h2>Alertas inteligentes</h2><span class="tag yellow">Análise</span></div><div id="smartAlerts"></div></div>
+<div class="panel"><div class="row"><h2>Despesas por aprovar</h2><button class="btn secondary smallbtn" onclick="showPage('history')">Gerir</button></div><div id="pendingApprovals"></div></div>
+</div>
+<div class="panel"><div class="row"><h2>Movimentos recentes</h2><button class="btn secondary smallbtn" onclick="showPage('history')">Ver histórico</button></div><div id="recent"></div></div>
+</section>
+
+<section class="page" id="income">
+<h1>Receitas</h1><p class="muted">Regista salário e qualquer entrada adicional.</p>
+<div class="panel"><form id="incomeForm"><div class="grid2">
+<div class="field"><label>Descrição</label><input id="incDesc" required placeholder="Ex.: Salário mensal"></div>
+<div class="field"><label>Valor (€)</label><input id="incAmount" type="number" min="0.01" step="0.01" required placeholder="0,00"></div>
+</div><div class="field"><label>Data</label><input id="incDate" type="date" required></div><button class="btn">Guardar receita</button></form></div>
+<div class="panel"><h2>Receitas registadas</h2><div id="incomeTable"></div></div>
+</section>
+
+<section class="page" id="expense">
+<h1>Justificar uma despesa</h1><p class="muted">Pensa antes de gastar. Regista a intenção e avalia o impacto.</p>
+<div class="notice">Regra CYDIO: uma despesa não é automaticamente aprovada. A cor é uma orientação baseada no orçamento e na justificação.</div>
+<div class="panel"><form id="expenseForm">
+<div class="grid2">
+<div class="field"><label>O que pretendes comprar/pagar?</label><input id="expDesc" required placeholder="Ex.: Compras do supermercado"></div>
+<div class="field"><label>Valor previsto (€)</label><input id="expAmount" type="number" min="0.01" step="0.01" required placeholder="0,00"></div>
+</div>
+<div class="grid2">
+<div class="field"><label>Categoria</label><select id="expCategory"><option>Alimentação</option><option>Casa</option><option>Transportes</option><option>Saúde</option><option>Família</option><option>Comunicações</option><option>Lazer</option><option>Compras</option><option>Outros</option></select></div>
+<div class="field"><label>Tipo de despesa</label><select id="expType"><option>Necessidade</option><option>Importante</option><option>Desejo</option></select></div>
+</div>
+<div class="field"><label>Porque precisas de gastar?</label><textarea id="expReason" required placeholder="Explica a finalidade. O que acontece se não comprares agora?"></textarea></div>
+<div class="grid2">
+<div class="field"><label>Quando?</label><select id="expWhen"><option>Hoje</option><option>Esta semana</option><option>Pode esperar</option></select></div>
+<div class="field"><label>Já foi pago?</label><select id="expPaid"><option value="no">Ainda não — avaliar primeiro</option><option value="yes">Sim — já gastei</option></select></div>
+</div>
+<div id="evaluation" class="notice" style="display:none"></div>
+<div class="actions"><button type="button" class="btn secondary" onclick="evaluateExpense()">Avaliar antes de guardar</button><button class="btn">Guardar despesa</button></div>
+</form></div>
+<div class="panel"><h2>Como interpretar as cores</h2><p><span class="tag green">VERDE</span> Cabe no orçamento estimado e tem justificação adequada.</p><p><span class="tag yellow">AMARELO</span> Pode reduzir a margem ou é um desejo que pode esperar.</p><p><span class="tag red">VERMELHO</span> Pode deixar o saldo negativo ou comprometer o essencial.</p><div class="small">A classificação é indicativa. Confirma sempre as tuas contas antes de tomar decisões.</div></div>
+</section>
+
+<section class="page" id="commitments">
+<h1>Compromissos mensais</h1><p class="muted">Regista primeiro o que é obrigatório pagar. O sistema reserva esse dinheiro no teu orçamento.</p>
+<div class="panel"><form id="commitmentForm"><div class="grid2">
+<div class="field"><label>Compromisso</label><input id="commitName" required placeholder="Ex.: Renda, transportes, apoio familiar"></div>
+<div class="field"><label>Valor mensal (€)</label><input id="commitAmount" type="number" min="0.01" step="0.01" required placeholder="0,00"></div>
+</div><div class="grid2"><div class="field"><label>Categoria</label><select id="commitCategory"><option>Casa</option><option>Alimentação</option><option>Transportes</option><option>Família</option><option>Comunicações</option><option>Saúde</option><option>Outros</option></select></div>
+<div class="field"><label>Dia de vencimento</label><input id="commitDay" type="number" min="1" max="31" value="5" required></div></div>
+<button class="btn">Adicionar compromisso</button></form></div>
+<div class="panel"><div class="row"><h2>Compromissos ativos</h2><strong id="commitTotal">0,00 €</strong></div><div id="commitmentsList"></div></div>
+</section>
+
+<section class="page" id="lifeplan">
+<h1>Plano de vida</h1><p class="muted">Transforma objetivos pessoais em metas financeiras com etapas, prazos e acompanhamento.</p>
+<div class="stats">
+<div class="stat"><div class="label">Objetivos ativos</div><div class="value" id="lifeCount">0</div></div>
+<div class="stat"><div class="label">Total que queres alcançar</div><div class="value" id="lifeTargetTotal">0,00 €</div></div>
+<div class="stat"><div class="label">Já reservado</div><div class="value green" id="lifeSavedTotal">0,00 €</div></div>
+<div class="stat"><div class="label">Ainda falta</div><div class="value yellow" id="lifeRemaining">0,00 €</div></div>
+</div>
+<div class="panel"><div class="row"><h2>Criar objetivo de vida</h2><span class="tag green">Planeamento</span></div>
+<form id="lifeForm">
+<div class="grid2">
+<div class="field"><label>Nome do objetivo</label><input id="lifeName" required placeholder="Ex.: Construir o meu lar"></div>
+<div class="field"><label>Valor necessário (€)</label><input id="lifeTargetInput" type="number" min="1" step="0.01" required placeholder="Ex.: 6000"></div>
+</div>
+<div class="grid2">
+<div class="field"><label>Quanto pretendes guardar por mês? (€)</label><input id="lifeMonthly" type="number" min="0" step="0.01" placeholder="Ex.: 150"></div>
+<div class="field"><label>Prazo desejado</label><input id="lifeDeadline" type="date"></div>
+</div>
+<div class="field"><label>Porque este objetivo é importante?</label><textarea id="lifeReason" placeholder="Descreve o que queres construir e porquê."></textarea></div>
+<button class="btn">Adicionar ao meu plano</button>
+</form></div>
+<div class="panel"><div class="row"><h2>Ideias para começar</h2><span class="small">Podes editar os valores depois.</span></div>
+<div class="actions">
+<button class="btn secondary smallbtn" onclick="addLifePreset('Fundo de segurança',6000,'Criar uma reserva financeira para imprevistos.')">Fundo de segurança · 6.000 €</button>
+<button class="btn secondary smallbtn" onclick="addLifePreset('Computador para produção musical',1000,'Investir numa ferramenta para produzir e desenvolver a minha música.')">Computador / música</button>
+<button class="btn secondary smallbtn" onclick="addLifePreset('Construir o meu lar',10000,'Preparar uma casa e uma base estável para a família.')">Construir o meu lar</button>
+</div></div>
+<div class="panel"><h2>Os meus objetivos de vida</h2><div id="lifePlansList"></div></div>
+<div class="panel"><h2>Próximos passos</h2><div id="lifeAdvice" class="muted">Cria um objetivo para receberes sugestões de planeamento.</div></div>
+</section>
+
+<section class="page" id="goals">
+<h1>Objetivos de poupança</h1><p class="muted">Dá um destino ao dinheiro que queres guardar.</p>
+<div class="panel"><form id="goalForm"><div class="grid2"><div class="field"><label>Nome do objetivo</label><input id="goalName" required placeholder="Ex.: Fundo de emergência"></div><div class="field"><label>Valor pretendido (€)</label><input id="goalTarget" type="number" min="1" step="0.01" required placeholder="1000"></div></div><button class="btn">Criar objetivo</button></form></div>
+<div class="panel"><h2>Os meus objetivos</h2><div id="goalsList"></div></div>
+</section>
+
+<section class="page" id="history">
+<div class="row"><div><h1>Histórico</h1><p class="muted">Consulta todas as entradas e saídas.</p></div><button class="btn secondary smallbtn" onclick="exportCSV()">Exportar CSV</button></div>
+<div class="panel"><div class="field"><label>Filtrar movimentos</label><select id="filterType" onchange="renderHistory()"><option value="all">Todos</option><option value="income">Receitas</option><option value="expense">Despesas</option></select></div><div id="historyTable"></div></div>
+</section>
+
+<section class="page" id="reports">
+<h1>Relatórios</h1><p class="muted">Percebe para onde vai o dinheiro e quanto consegues guardar.</p>
+<div class="stats"><div class="stat"><div class="label">Taxa de poupança</div><div class="value" id="savingRate">0%</div></div><div class="stat"><div class="label">Saldo do mês</div><div class="value" id="monthBalance">0,00 €</div></div></div>
+<div class="panel"><h2>Despesas por categoria</h2><div id="categoryReport"></div></div>
+<div class="panel"><h2>Resumo do mês</h2><div id="monthlyReport"></div></div>
+</section>
+
+<section class="page" id="settings">
+<h1>Definições</h1><p class="muted">Configura a base do teu orçamento.</p>
+<div class="panel"><form id="settingsForm"><div class="field"><label>Rendimento mensal líquido (€)</label><input id="monthlyIncome" type="number" min="0" step="0.01" placeholder="Ex.: 850"></div><div class="field"><label>Limite mensal de despesas (€)</label><input id="monthlyLimit" type="number" min="0" step="0.01" placeholder="Ex.: 600"></div><div class="field"><label>Meta mensal de poupança (€)</label><input id="monthlySaving" type="number" min="0" step="0.01" placeholder="Ex.: 150"></div><button class="btn">Guardar orçamento</button></form></div>
+<div class="panel"><h2>Dados e privacidade</h2><p class="small">Nesta versão, os dados ficam guardados no armazenamento local deste navegador. Não são enviados para um servidor nem sincronizados automaticamente entre dispositivos.</p><div class="actions"><button class="btn secondary" onclick="backupJSON()">Descarregar cópia de segurança</button><label class="btn secondary" style="display:inline-flex;align-items:center">Restaurar cópia<input type="file" accept=".json,application/json" onchange="restoreJSON(event)" style="display:none"></label><button class="btn danger" onclick="clearData()">Apagar todos os dados</button></div></div>
+</section>
+</main></div>
+<footer>CYDIO FINANCE • O controlo de hoje constrói a liberdade de amanhã.</footer>
+</div>
+<script>
+const KEY='cydio_finance_v1';
+const blank={transactions:[],goals:[],commitments:[],lifePlans:[],settings:{income:0,limit:0,saving:0}};
+let db=load();
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY))||structuredClone(blank);x.transactions ||= [];x.goals ||= [];x.commitments ||= [];x.lifePlans ||= [];x.settings ||= {income:0,limit:0,saving:0};x.transactions.forEach(t=>{if(t.kind==='expense'&&t.paid===undefined)t.paid=true;if(t.kind==='expense'&&!t.status)t.status=t.paid?'PAGA':'POR APROVAR'});return x}catch(e){return structuredClone(blank)}}
+function save(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}
+function money(n){return (Number(n)||0).toLocaleString('pt-PT',{style:'currency',currency:'EUR'})}
+function today(){return new Date().toISOString().slice(0,10)}
+function monthKey(d=today()){return d.slice(0,7)}
+function sum(arr,kind,month=null){return arr.filter(x=>x.kind===kind&&(!month||x.date.startsWith(month))&&(kind!=='expense'||x.paid===true||x.paid===undefined)).reduce((s,x)=>s+x.amount,0)}
+function pendingCommitments(){return db.commitments.filter(x=>x.active!==false&&!x.paid).reduce((s,x)=>s+x.amount,0)}
+function plannedExpenseTotal(month=monthKey()){return db.transactions.filter(x=>x.kind==='expense'&&x.date.startsWith(month)&&x.status!=='REJEITADA').reduce((s,x)=>s+x.amount,0)}
+function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function classify(amount,type,when,reason){
+ const income=db.settings.income||sum(db.transactions,'income',monthKey())||0;
+ const spent=plannedExpenseTotal();
+ const obligations=pendingCommitments();
+ const limit=db.settings.limit||Math.max(0,income-db.settings.saving);
+ const remaining=Math.max(0,limit-spent-obligations);
+ if(amount>remaining || (income>0&&amount>Math.max(0,income-spent-obligations)))return {c:'red',t:'VERMELHO',msg:'Este gasto pode ultrapassar o orçamento ou comprometer o saldo disponível. Reavalia ou reduz o valor.'};
+ if(type==='Desejo'||when==='Pode esperar'||!reason.trim())return {c:'yellow',t:'AMARELO',msg:'Pensa se é mesmo necessário. Considera esperar, comparar preços ou definir um limite.'};
+ return {c:'green',t:'VERDE',msg:'À partida cabe no orçamento definido. Confirma que as despesas essenciais e a meta de poupança estão protegidas.'};
+}
+function evaluateExpense(){const a=Number(document.getElementById('expAmount').value);const t=document.getElementById('expType').value;const w=document.getElementById('expWhen').value;const r=document.getElementById('expReason').value;const el=document.getElementById('evaluation');if(!a||a<=0){el.style.display='block';el.textContent='Introduz um valor válido.';return}const c=classify(a,t,w,r);el.style.display='block';el.className='notice';el.innerHTML='<strong>'+c.t+'</strong> — '+c.msg;el.style.borderColor=c.c==='green'?'#28543f':c.c==='yellow'?'#6b5922':'#71383d';}
+document.getElementById('incomeForm').addEventListener('submit',e=>{e.preventDefault();db.transactions.push({id:crypto.randomUUID(),kind:'income',desc:incDesc.value,amount:Number(incAmount.value),date:incDate.value||today(),category:'Receita'});e.target.reset();incDate.value=today();save();showPage('income')});
+document.getElementById('expenseForm').addEventListener('submit',e=>{e.preventDefault();const amount=Number(expAmount.value),desc=expDesc.value,reason=expReason.value,type=expType.value,when=expWhen.value;const c=classify(amount,type,when,reason);const paid=expPaid.value==='yes';db.transactions.push({id:crypto.randomUUID(),kind:'expense',desc,amount,date:today(),category:expCategory.value,reason,type,when,paid,status:paid?'PAGA':'POR APROVAR',approval:paid?'PAGA':'PENDENTE',color:c.c});e.target.reset();document.getElementById('evaluation').style.display='none';save();showPage('history')});
+document.getElementById('goalForm').addEventListener('submit',e=>{e.preventDefault();db.goals.push({id:crypto.randomUUID(),name:goalName.value,target:Number(goalTarget.value),saved:0});e.target.reset();save()});
+document.getElementById('lifeForm').addEventListener('submit',e=>{e.preventDefault();db.lifePlans.push({id:crypto.randomUUID(),name:lifeName.value,target:Number(lifeTargetInput.value),saved:0,monthly:Number(lifeMonthly.value)||0,deadline:lifeDeadline.value,reason:lifeReason.value,created:today()});e.target.reset();save()});
+function addLifePreset(name,target,reason){if(db.lifePlans.some(x=>x.name===name)){alert('Esse objetivo já está no teu plano.');return}db.lifePlans.push({id:crypto.randomUUID(),name,target,saved:0,monthly:0,deadline:'',reason,created:today()});save()}
+function contributeLife(id){const g=db.lifePlans.find(x=>x.id===id);if(!g)return;const v=Number(prompt('Quanto vais reservar para "'+g.name+'" (€)?'));if(v>0){g.saved=Math.min(g.target,g.saved+v);save()}}
+function removeLife(id){if(confirm('Remover este objetivo do plano de vida?')){db.lifePlans=db.lifePlans.filter(x=>x.id!==id);save()}}
+
+document.getElementById('commitmentForm').addEventListener('submit',e=>{e.preventDefault();db.commitments.push({id:crypto.randomUUID(),name:commitName.value,amount:Number(commitAmount.value),category:commitCategory.value,day:Number(commitDay.value),active:true,paid:false});e.target.reset();commitDay.value=5;save()});
+function approveExpense(id){const x=db.transactions.find(t=>t.id===id);if(!x)return;x.status='APROVADA';x.approval='APROVADA';save()}
+function rejectExpense(id){const x=db.transactions.find(t=>t.id===id);if(!x)return;x.status='REJEITADA';x.approval='REJEITADA';save()}
+function markExpensePaid(id){const x=db.transactions.find(t=>t.id===id);if(!x)return;x.paid=true;x.status='PAGA';x.approval='PAGA';save()}
+function markCommitmentPaid(id){const c=db.commitments.find(x=>x.id===id);if(!c||c.paid)return;c.paid=true;db.transactions.push({id:crypto.randomUUID(),kind:'expense',desc:c.name,amount:c.amount,date:today(),category:c.category,reason:'Pagamento de compromisso mensal',type:'Necessidade',when:'Hoje',paid:true,status:'PAGA',color:'green'});save()}
+function removeCommitment(id){if(confirm('Remover este compromisso?')){db.commitments=db.commitments.filter(x=>x.id!==id);save()}}
+document.getElementById('settingsForm').addEventListener('submit',e=>{e.preventDefault();db.settings={income:Number(monthlyIncome.value)||0,limit:Number(monthlyLimit.value)||0,saving:Number(monthlySaving.value)||0};save();alert('Orçamento guardado.')});
+function removeTx(id){if(confirm('Apagar este movimento?')){db.transactions=db.transactions.filter(x=>x.id!==id);save()}}
+function addToGoal(id){const g=db.goals.find(x=>x.id===id);const v=Number(prompt('Quanto queres acrescentar ao objetivo? (€)'));if(v>0){g.saved=Math.min(g.target,g.saved+v);save()}}
+function removeGoal(id){if(confirm('Apagar este objetivo?')){db.goals=db.goals.filter(x=>x.id!==id);save()}}
+function tableRows(items){if(!items.length)return '<div class="empty">Ainda não existem movimentos registados.</div>';return `<div style="overflow:auto"><table><thead><tr><th>Data</th><th>Descrição</th><th>Tipo</th><th>Valor</th><th>Ações</th></tr></thead><tbody>${items.map(x=>`<tr><td>${x.date}</td><td>${esc(x.desc)}${x.reason?`<div class="small">${esc(x.reason)}</div>`:''}</td><td>${x.kind==='income'?'<span class="tag green">Receita</span>':`<span class="tag ${x.status==='REJEITADA'?'red':x.paid?'green':'yellow'}">${x.status||'Despesa'}</span>`}</td><td class="${x.kind==='income'?'green':'red'}">${x.kind==='income'?'+':'−'}${money(x.amount)}</td><td>${x.kind==='expense'&&!x.paid&&x.status!=='REJEITADA'?`<div class="actions">${x.status==='POR APROVAR'?`<button class="btn smallbtn" onclick="approveExpense('${x.id}')">Aprovar</button>`:''}<button class="btn secondary smallbtn" onclick="markExpensePaid('${x.id}')">Paga</button><button class="btn danger smallbtn" onclick="rejectExpense('${x.id}')">Rejeitar</button></div>`:''}<button class="btn danger smallbtn" onclick="removeTx('${x.id}')">×</button></td></tr>`).join('')}</tbody></table></div>`}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderHistory(){let xs=[...db.transactions].sort((a,b)=>b.date.localeCompare(a.date));const f=document.getElementById('filterType')?.value||'all';if(f!=='all')xs=xs.filter(x=>x.kind===f);document.getElementById('historyTable').innerHTML=tableRows(xs)}
+function renderAll(){
+ const m=monthKey(),inc=sum(db.transactions,'income'),out=sum(db.transactions,'expense'),reserved=pendingCommitments(),bal=inc-out-reserved,saved=db.goals.reduce((s,g)=>s+g.saved,0);
+ document.getElementById('monthLabel').textContent=new Date().toLocaleDateString('pt-PT',{month:'long',year:'numeric'});
+ document.getElementById('balance').textContent=money(bal);document.getElementById('incomeTotal').textContent=money(inc);document.getElementById('expenseTotal').textContent=money(out);document.getElementById('savedTotal').textContent=money(saved);
+ const limit=db.settings.limit||Math.max(0,(db.settings.income||sum(db.transactions,'income',m))-db.settings.saving);const pct=limit?Math.min(100,(out+reserved)/limit*100):0;const col=pct>100?'red':pct>80?'yellow':'green';
+ document.getElementById('health').innerHTML='<div class="row"><strong>Utilização do limite</strong><strong class="'+col+'">'+Math.round(pct)+'%</strong></div><div class="progress"><i style="width:'+pct+'%;background:var(--'+(col==='green'?'green':col==='yellow'?'yellow':'red')+')"></i></div><div class="small">Despesas: '+money(out)+' • Limite: '+money(limit)+'</div>';
+ document.getElementById('healthText').textContent=limit?'Mantém as despesas dentro do limite e protege a tua meta de poupança.':'Define o teu rendimento e limite mensal nas Definições para receberes uma avaliação mais útil.';
+ document.getElementById('goalSummary').innerHTML=db.goals.length?db.goals.slice(0,3).map(g=>'<div class="small">'+esc(g.name)+' — '+money(g.saved)+' / '+money(g.target)+'</div><div class="progress"><i style="width:'+Math.min(100,g.saved/g.target*100)+'%"></i></div>').join(''):'<div class="empty">Ainda não criaste objetivos.</div>';
+ const recent=[...db.transactions].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);document.getElementById('recent').innerHTML=tableRows(recent);
+ document.getElementById('incomeTable').innerHTML=tableRows(db.transactions.filter(x=>x.kind==='income').sort((a,b)=>b.date.localeCompare(a.date)));
+ document.getElementById('goalsList').innerHTML=db.goals.length?db.goals.map(g=>`<div style="margin-bottom:18px"><div class="row"><strong>${esc(g.name)}</strong><strong>${Math.round(g.saved/g.target*100)}%</strong></div><div class="progress"><i style="width:${Math.min(100,g.saved/g.target*100)}%"></i></div><div class="row small"><span>${money(g.saved)} guardados de ${money(g.target)}</span><span class="actions"><button class="btn secondary smallbtn" onclick="addToGoal('${g.id}')">＋ Guardar</button><button class="btn danger smallbtn" onclick="removeGoal('${g.id}')">Apagar</button></span></div></div>`).join(''):'<div class="empty">Cria o teu primeiro objetivo de poupança.</div>';
+ const pending=db.transactions.filter(x=>x.kind==='expense'&&!x.paid&&x.status!=='REJEITADA');
+ document.getElementById('pendingApprovals').innerHTML=pending.length?pending.slice(0,4).map(x=>'<div class="row small" style="margin:8px 0"><span>'+esc(x.desc)+' · '+money(x.amount)+'</span><span class="tag yellow">Pendente</span></div>').join(''):'<div class="empty">Não tens despesas pendentes.</div>';
+ const alerts=[];
+ if(limit&&out+reserved>limit)alerts.push(['red','Estás acima do limite mensal previsto. Revê despesas variáveis.']);
+ else if(limit&&(out+reserved)/limit>.8)alerts.push(['yellow','Já utilizaste mais de 80% do teu orçamento. Modera os próximos gastos.']);
+ if(pending.length)alerts.push(['yellow',pending.length+' despesa(s) aguardam aprovação.']);
+ const wants=db.transactions.filter(x=>x.kind==='expense'&&x.type==='Desejo'&&x.date.startsWith(m)&&x.status!=='REJEITADA');
+ if(wants.length)alerts.push(['yellow','Registaste '+wants.length+' compra(s) como desejo. Confirma se cabem no plano.']);
+ if(db.settings.saving>0&&inc-out-reserved<db.settings.saving)alerts.push(['red','O saldo projetado está abaixo da tua meta mensal de poupança.']);
+ if(!alerts.length)alerts.push(['green','Sem alertas críticos. Continua a registar os movimentos para manter a análise atualizada.']);
+ document.getElementById('smartAlerts').innerHTML=alerts.map(a=>'<p><span class="tag '+a[0]+'">'+a[0].toUpperCase()+'</span> '+a[1]+'</p>').join('');
+ const activeComm=db.commitments.filter(x=>x.active!==false&&!x.paid);
+ document.getElementById('commitTotal').textContent=money(reserved);
+ document.getElementById('commitmentsList').innerHTML=db.commitments.length?db.commitments.map(c=>`<div class="row" style="padding:10px 0;border-bottom:1px solid var(--line)"><div><strong>${esc(c.name)}</strong><div class="small">${esc(c.category)} · vencimento dia ${c.day} · ${c.paid?'Pago':'Por pagar'}</div></div><div class="actions"><strong>${money(c.amount)}</strong>${c.paid?'':`<button class="btn smallbtn" onclick="markCommitmentPaid('${c.id}')">Marcar pago</button>`}<button class="btn danger smallbtn" onclick="removeCommitment('${c.id}')">×</button></div></div>`).join(''):'<div class="empty">Ainda não registaste compromissos mensais.</div>';
+ const life=db.lifePlans||[];
+ const lt=life.reduce((a,g)=>a+g.target,0),ls=life.reduce((a,g)=>a+g.saved,0);
+ document.getElementById('lifeCount').textContent=life.length;
+ document.getElementById('lifeTargetTotal').textContent=money(lt);
+ document.getElementById('lifeSavedTotal').textContent=money(ls);
+ document.getElementById('lifeRemaining').textContent=money(Math.max(0,lt-ls));
+ document.getElementById('lifePlansList').innerHTML=life.length?life.map(g=>{const pct=Math.min(100,g.saved/g.target*100);const months=g.monthly>0?Math.ceil(Math.max(0,g.target-g.saved)/g.monthly):null;return `<div style="padding:13px 0;border-bottom:1px solid var(--line)"><div class="row"><strong>${esc(g.name)}</strong><span class="tag ${pct>=100?'green':'yellow'}">${Math.round(pct)}%</span></div><div class="progress"><i style="width:${pct}%"></i></div><div class="row small"><span>${money(g.saved)} de ${money(g.target)} · faltam ${money(Math.max(0,g.target-g.saved))}</span><span>${g.deadline?'Prazo: '+g.deadline:'Sem prazo definido'}</span></div>${g.reason?'<p class="small">'+esc(g.reason)+'</p>':''}<div class="row small"><span>${g.monthly>0?'A '+money(g.monthly)+'/mês: cerca de '+months+' mês(es) restantes':'Define um valor mensal para estimar o prazo.'}</span><span class="actions"><button class="btn smallbtn" onclick="contributeLife('${g.id}')">＋ Reservar</button><button class="btn danger smallbtn" onclick="removeLife('${g.id}')">Apagar</button></span></div></div>`}).join(''):'<div class="empty">Ainda não tens objetivos de vida. Podes criar um ou escolher uma das ideias acima.</div>';
+ const activeLife=life.filter(g=>g.saved<g.target);
+ document.getElementById('lifeAdvice').innerHTML=activeLife.length?'<p>Tens '+activeLife.length+' objetivo(s) por concluir. Escolhe um objetivo prioritário e define uma contribuição mensal realista, depois de cobrires as despesas essenciais.</p><p>Evita contar o mesmo dinheiro duas vezes: valores reservados aqui são um plano de poupança, não uma despesa paga automaticamente.</p>':'<p>Excelente: todos os objetivos registados foram alcançados, ou ainda não criaste objetivos.</p>';
+ renderHistory();
+ const mi=sum(db.transactions,'income',m),mo=sum(db.transactions,'expense',m),reservedNow=pendingCommitments(),rate=mi?Math.max(0,(mi-mo-reservedNow)/mi*100):0;document.getElementById('savingRate').textContent=Math.round(rate)+'%';document.getElementById('monthBalance').textContent=money(mi-mo-reservedNow);
+ const cats={};db.transactions.filter(x=>x.kind==='expense'&&x.date.startsWith(m)).forEach(x=>cats[x.category]=(cats[x.category]||0)+x.amount);const max=Math.max(1,...Object.values(cats));
+ document.getElementById('categoryReport').innerHTML=Object.keys(cats).length?'<div class="barlist">'+Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>'<div class="barrow"><span>'+esc(k)+'</span><div class="bar"><i style="width:'+(v/max*100)+'%"></i></div><strong>'+money(v)+'</strong></div>').join('')+'</div>':'<div class="empty">Ainda não há despesas este mês.</div>';
+ document.getElementById('monthlyReport').innerHTML='<p>Receitas: <strong class="green">'+money(mi)+'</strong></p><p>Despesas: <strong class="red">'+money(mo)+'</strong></p><p>Diferença: <strong>'+money(mi-mo)+'</strong></p><p>Objetivos de poupança: <strong>'+db.goals.length+'</strong></p>';
+ monthlyIncome.value=db.settings.income||'';monthlyLimit.value=db.settings.limit||'';monthlySaving.value=db.settings.saving||'';
+}
+function exportCSV(){const rows=[['Data','Tipo','Descrição','Categoria','Valor EUR','Justificação','Classificação'],...db.transactions.map(x=>[x.date,x.kind,x.desc,x.category,x.amount,x.reason||'',x.status||''])];const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(';')).join('\
+');download('\ufeff'+csv,'cydio-finance-historico.csv','text/csv;charset=utf-8')}
+function backupJSON(){download(JSON.stringify(db,null,2),'cydio-finance-backup.json','application/json')}
+function restoreJSON(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!Array.isArray(x.transactions)||!Array.isArray(x.goals)||!x.settings)throw 0;x.commitments ||= [];x.lifePlans ||= [];db=x;save();alert('Cópia restaurada.')}catch(_){alert('Ficheiro inválido.')}};r.readAsText(f)}
+function download(content,name,type){const a=document.createElement('a'),u=URL.createObjectURL(new Blob([content],{type}));a.href=u;a.download=name;a.click();URL.revokeObjectURL(u)}
+function clearData(){if(confirm('Tens a certeza? Esta ação apaga todos os registos deste navegador. Faz primeiro uma cópia de segurança.')){db=structuredClone(blank);save()}}
+incDate.value=today();renderAll();
+</script>
+</body></html>
